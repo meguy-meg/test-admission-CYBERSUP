@@ -1,0 +1,50 @@
+# Exercice 3 – Déploiement WordPress avec Docker
+
+## Les Objectifs
+
+Déployer une application WordPress via Docker Compose avec les services suivants :
+- **WordPress** 
+- **MariaDB** 
+- Volumes pour la persistance des données
+
+## Stack utilisée
+
+- Docker
+- docker-compose (version 3.8)
+- Images officielles : `wordpress:latest`, `mariadb:10.5`
+
+---
+
+## Fichier `docker-compose.yml`
+
+```yaml
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.5
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: wp_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wp_user
+      WORDPRESS_DB_PASSWORD: wp_pass
+      WORDPRESS_DB_NAME: wordpress
+    ports:
+      - "8080:80"
+    volumes:
+      - wp_data:/var/www/html
+
+volumes:
+  db_data:
+  wp_data:
