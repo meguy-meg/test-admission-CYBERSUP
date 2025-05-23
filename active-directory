@@ -1,0 +1,18 @@
+# Exercice 2 – Active Directory avec PowerShell
+
+## Les Objectifs
+
+Créer un domaine `laplateforme.io` sur Windows Server et automatiser l'importation d'utilisateurs via un fichier `.csv` avec PowerShell.
+
+
+##  Environnement utilisé
+
+- Windows Server 2019 (ou 2022)
+- Rôle Active Directory Domain Services (AD DS)
+- PowerShell (exécuté en tant qu'administrateur)
+- Fichiers fournis : `utilisateurs.csv`, `import-utilisateurs.ps1`
+
+
+## Fichier `utilisateurs.csv`
+
+Contient une liste d’utilisateurs avec les colonnes suivantes :
